@@ -380,10 +380,3 @@ void deleteOpTab() {
 	}
 	delete opTable;
 }
-//int main(int argc, char **argv) {
-//	map<string, OpInfo*>* opTab = new map<string, OpInfo*>();
-//	cout << opTab->size() << endl;
-//	fill(opTab);
-//	cout << opTab->size() << endl;
-//}
-

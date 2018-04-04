@@ -44,6 +44,7 @@ int main(int argc, char **argv) {
 		cout << "\aInvalid number of parameters" << endl;
 		return 1;
 	}
+
   printf("Assembler Started\n");
 	openInitialStreams(argv[1],"listFile.txt");
 	printf("Input Files is being read form %s\n", argv[1]);
@@ -64,17 +65,20 @@ int main(int argc, char **argv) {
 			currCSect.push_back(pl);
 			continue;
 		}
+
 		if (isCSect(pl)) {
 			cSect old = runPass1(currCSect, &started, &ended,
 					&successfullPass1);
 			cSects.push_back(old);
-
 			currCSect.clear(); //Already Handled statements
 			currCSect.push_back(pl); //Add 'cSect' to the new parsedLines
 		}
+
 	}
+
 	cSects.push_back(runPass1(currCSect, &started, &ended, &successfullPass1));
 	currCSect.clear();
+
 	//Write that text to a file
 	for (unsigned int i = 0; i < cSects.size(); i++) {
 		for (unsigned int j = 0; j < cSects[i].dataSect.size(); j++) {
@@ -101,8 +105,10 @@ int main(int argc, char **argv) {
 		finish();
 		return 0;
 	}
+
 	runPass2(&opfile, &cSects);
 	printf("Done Assembling :)\n" );
 	finish();
 	return 0;
+
 }
